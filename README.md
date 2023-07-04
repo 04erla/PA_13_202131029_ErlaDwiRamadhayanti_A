@@ -16,58 +16,63 @@ dari suatu komputasi atau perhitungan yang mewakili bentuk dari suatu batas obje
 ## Penjelasan langkah-langkah dalam source code :
 
 1. Import library yang diperlukan ke dalam program:
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
-> Mengimpor library yang diperlukan untuk pengolahan gambar, yaitu:
+   - import cv2
+   - import numpy as np
+   - import matplotlib.pyplot as plt
+   
+-  Mengimpor library yang diperlukan untuk pengolahan gambar, yaitu:
    - `cv2` (OpenCV): Library yang menyediakan berbagai fungsi untuk pengolahan gambar dan komputer visi.
    - `numpy`: Library yang digunakan untuk manipulasi array dan operasi numerik.
    - `matplotlib.pyplot`: Library yang digunakan untuk membuat plot dan visualisasi data.
 
 2. Kemudian Membaca gambar dengan nama file "Erla.jpg":
-image2 = cv2.imread('Erla.jpg')
 
-> Membaca gambar dengan menggunakan fungsi `cv2.imread()` dan menyimpannya dalam variabel `image2`.
+   - image2 = cv2.imread('Erla.jpg')
+-  Membaca gambar dengan menggunakan fungsi `cv2.imread()` dan menyimpannya dalam variabel `image2`.
 
 3. Menampilkan gambar asli menggunakan matplotlib:
-   plt.imshow(image2[:,:,::-1])
-   plt.title("Original Image")
+   
+   - plt.imshow(image2[:,:,::-1])                                                        																																								
+   - plt.title("Original Image")
 
-> Kemudian, gambar tersebut ditampilkan menggunakan fungsi `plt.imshow()` dari matplotlib.
+-  Kemudian, gambar tersebut ditampilkan menggunakan fungsi `plt.imshow()` dari matplotlib.
 
 4. Melakukan pengaburan pada gambar untuk menghilangkan noise:
-blurred_image = cv2.GaussianBlur(image2.copy(),(5,5),0)
+   - blurred_image = cv2.GaussianBlur(image2.copy(),(5,5),0)
 
-> Mengaburkan gambar menggunakan filter Gaussian blur dengan menggunakan fungsi `cv2.GaussianBlur()`. Gambar yang diaburkan disimpan dalam variabel `blurred_image`.
+-  Mengaburkan gambar menggunakan filter Gaussian blur dengan menggunakan fungsi `cv2.GaussianBlur()`. Gambar yang diaburkan disimpan dalam variabel `blurred_image`.
 
 5. Menggunakan metode Canny edge detection untuk mendeteksi tepi pada gambar:
-edges = cv2.Canny(blurred_image, 100, 160)
+   - edges = cv2.Canny(blurred_image, 100, 160)
 
-> Menerapkan deteksi tepi menggunakan metode Canny pada gambar yang telah diaburkan dengan menggunakan fungsi `cv2.Canny()`. Hasil deteksi tepi disimpan dalam variabel `edges`.
+-  Menerapkan deteksi tepi menggunakan metode Canny pada gambar yang telah diaburkan dengan menggunakan fungsi `cv2.Canny()`. Hasil deteksi tepi disimpan dalam variabel `edges`.
 
 6. Menampilkan gambar hasil deteksi tepi menggunakan matplotlib:
-plt.imshow(edges,cmap='Greys_r')
-plt.title("Edges Image")
+   - plt.imshow(edges,cmap='Greys_r')
+   - plt.title("Edges Image")
 
-> Menampilkan gambar hasil deteksi tepi menggunakan fungsi `plt.imshow()` dengan menggunakan skema warna 'Greys_r' dan memberikan judul "Edges Image".
+-  Menampilkan gambar hasil deteksi tepi menggunakan fungsi `plt.imshow()` dengan menggunakan skema warna 'Greys_r' dan memberikan judul "Edges Image".
 
 7. Membuat salinan dari gambar asli:
-image2_copy2 = image2.copy()
-> Membuat salinan gambar asli dengan `image2.copy()`, 
+   - image2_copy2 = image2.copy()
+   
+-  Membuat salinan gambar asli dengan `image2.copy()`, 
 
 8. Mencari kontur pada gambar hasil deteksi tepi:
-contours, hierarchy = cv2.findContours(edges, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+   - contours, hierarchy = cv2.findContours(edges, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
-> Kemudian menemukan kontur pada gambar hasil deteksi tepi menggunakan fungsi `cv2.findContours()`. Hasilnya disimpan dalam variabel `contours` dan `hierarchy`. 
+-  Kemudian menemukan kontur pada gambar hasil deteksi tepi menggunakan fungsi `cv2.findContours()`. Hasilnya disimpan dalam variabel `contours` dan `hierarchy`. 
 
 9. Menggambar semua kontur yang ditemukan pada salinan gambar:
-image2_copy2 = cv2.drawContours(image2_copy2, contours, -1, (0, 0, 255), 2)
+   - image2_copy2 = cv2.drawContours(image2_copy2, contours, -1, (0, 0, 255), 2)
 
-> Selanjutnya, kontur-kontur tersebut digambar pada salinan gambar menggunakan fungsi `cv2.drawContours()`. Kontur digambarkan dengan warna merah `(0, 0, 255)` dan ketebalan garis 2 piksel.
+-   Selanjutnya, kontur-kontur tersebut digambar pada salinan gambar menggunakan fungsi `cv2.drawContours()`. Kontur digambarkan dengan warna merah `(0, 0, 255)` dan
+    ketebalan garis 2 piksel.
 
 10. Menampilkan gambar asli, gambar hasil deteksi tepi, dan gambar hasil kontur menggunakan matplotlib:
-plt.subplot(1,3,1);plt.imshow(image2[:,:,::-1]);plt.title("Image Original")
-plt.subplot(1,3,2);plt.imshow(edges,cmap='Greys_r');plt.title("Edges")
-plt.subplot(1,3,3);plt.imshow(image2_copy2[:,:,::-1]);plt.title("Image Setelah Contour")
+    - plt.subplot(1,3,1);plt.imshow(image2[:,:,::-1]);plt.title("Image Original")
+    - plt.subplot(1,3,2);plt.imshow(edges,cmap='Greys_r');plt.title("Edges")
+    - plt.subplot(1,3,3);plt.imshow(image2_copy2[:,:,::-1]);plt.title("Image Setelah Contour")
 
-> Menampilkan tiga gambar dalam satu plot dengan menggunakan `plt.subplot()`. Gambar pertama menampilkan "gambar asli", gambar kedua menampilkan "hasil deteksi tepi", dan gambar ketiga menampilkan "gambar setelah proses kontur". Setiap gambar diberikan judul sesuai dengan keterangannya.
+- 	Menampilkan tiga gambar dalam satu plot dengan menggunakan `plt.subplot()`. Gambar pertama menampilkan "gambar asli", gambar kedua menampilkan "hasil deteksi tepi", dan
+		 gambar ketiga menampilkan "gambar setelah proses kontur". Setiap gambar diberikan judul sesuai dengan keterangannya.
