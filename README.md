@@ -27,11 +27,11 @@ import matplotlib.pyplot as plt
 2. Kemudian Membaca gambar dengan nama file "Erla.jpg":
 image2 = cv2.imread('Erla.jpg')
 
-Membaca gambar dengan menggunakan fungsi `cv2.imread()` dan menyimpannya dalam variabel `image2`.
+> Membaca gambar dengan menggunakan fungsi `cv2.imread()` dan menyimpannya dalam variabel `image2`.
 
 3. Menampilkan gambar asli menggunakan matplotlib:
-plt.imshow(image2[:,:,::-1])
-plt.title("Original Image")
+   plt.imshow(image2[:,:,::-1])
+   plt.title("Original Image")
 
 > Kemudian, gambar tersebut ditampilkan menggunakan fungsi `plt.imshow()` dari matplotlib.
 
